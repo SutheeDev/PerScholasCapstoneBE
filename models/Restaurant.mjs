@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+const { Schema } = mongoose;
 
 const restaurantSchema = new mongoose.Schema(
   {
@@ -25,7 +26,7 @@ const restaurantSchema = new mongoose.Schema(
     },
     priceRange: {
       type: String,
-      enum: [$, $$, $$$, $$$$],
+      enum: ["$", "$$", "$$$", "$$$$"],
     },
     image: {
       type: String,
