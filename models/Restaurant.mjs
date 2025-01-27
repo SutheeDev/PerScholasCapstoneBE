@@ -38,7 +38,7 @@ const restaurantSchema = new mongoose.Schema(
     updatedAt: {
       type: Date,
     },
-    creator: {
+    userId: {
       type: Schema.Types.ObjectId,
       ref: "User",
     },

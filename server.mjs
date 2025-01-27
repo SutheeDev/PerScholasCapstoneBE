@@ -18,6 +18,7 @@ app.use(express.json());
 
 app.use("/api/user", userRouter);
 
+// Seed routes
 app.get("/api/seed/users", async (req, res) => {
   try {
     await User.deleteMany({});
@@ -27,9 +28,19 @@ app.get("/api/seed/users", async (req, res) => {
     console.log({ err: error.message });
   }
 });
+app.get("/api/seed/restaurants", async (req, res) => {
+  try {
+    await Restaurant.deleteMany({});
+    await Restaurant.create(restaurants);
+    res.json(restaurants);
+  } catch (error) {
+    console.log({ err: error.message });
+  }
+});
 
+// Handle 404
 app.get("*", (req, res) => {
-  res.send("Invalid Route : 404");
+  res.status(404).send("Invalid Route : 404");
 });
 
 const start = async () => {
