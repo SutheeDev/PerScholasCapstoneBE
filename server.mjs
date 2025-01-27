@@ -13,10 +13,12 @@ const port = process.env.PORT || 5000;
 
 // Routes
 import userRouter from "./routes/userRoutes.mjs";
+import restaurantRouter from "./routes/restaurantRoutes.mjs";
 
 app.use(express.json());
 
 app.use("/api/user", userRouter);
+app.use("/api/restaurants", restaurantRouter);
 
 // Seed routes
 app.get("/api/seed/users", async (req, res) => {
