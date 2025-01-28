@@ -83,5 +83,19 @@ router.patch("/:userId/:restaurantId", async (req, res) => {
 });
 
 // Delete
+router.delete("/:userId/:restaurantId", async (req, res) => {
+  try {
+    const { userId, restaurantId } = req.params;
+
+    const deletedRestaurant = await Restaurant.findOneAndDelete({
+      _id: restaurantId,
+      userId,
+    });
+
+    res.status(200).json(deletedRestaurant);
+  } catch (error) {
+    res.status(500).json("Server Error");
+  }
+});
 
 export default router;
