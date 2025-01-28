@@ -4,6 +4,7 @@ import {
   getRestaurants,
   getSingleRestaurant,
   updateRestaurant,
+  deleteRestaurant,
 } from "../controllers/restaurantsController.mjs";
 import Restaurant from "../models/restaurant.mjs";
 // import User from "../models/User.mjs";
@@ -93,19 +94,20 @@ router.route("/:userId/:restaurantId").get(getSingleRestaurant);
 router.route("/:userId/:restaurantId").patch(updateRestaurant);
 
 // Delete
-router.delete("/:userId/:restaurantId", async (req, res) => {
-  try {
-    const { userId, restaurantId } = req.params;
+// router.delete("/:userId/:restaurantId", async (req, res) => {
+//   try {
+//     const { userId, restaurantId } = req.params;
 
-    const deletedRestaurant = await Restaurant.findOneAndDelete({
-      _id: restaurantId,
-      userId,
-    });
+//     const deletedRestaurant = await Restaurant.findOneAndDelete({
+//       _id: restaurantId,
+//       userId,
+//     });
 
-    res.status(200).json(deletedRestaurant);
-  } catch (error) {
-    res.status(500).json("Server Error");
-  }
-});
+//     res.status(200).json(deletedRestaurant);
+//   } catch (error) {
+//     res.status(500).json("Server Error");
+//   }
+// });
+router.route("/:userId/:restaurantId").delete(deleteRestaurant);
 
 export default router;

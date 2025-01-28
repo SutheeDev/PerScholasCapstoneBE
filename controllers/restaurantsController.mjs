@@ -72,9 +72,25 @@ const updateRestaurant = async (req, res) => {
   }
 };
 
+const deleteRestaurant = async (req, res) => {
+  try {
+    const { userId, restaurantId } = req.params;
+
+    const deletedRestaurant = await Restaurant.findOneAndDelete({
+      _id: restaurantId,
+      userId,
+    });
+
+    res.status(200).json(deletedRestaurant);
+  } catch (error) {
+    res.status(500).json("Server Error");
+  }
+};
+
 export {
   createRestaurant,
   getRestaurants,
   getSingleRestaurant,
   updateRestaurant,
+  deleteRestaurant,
 };
