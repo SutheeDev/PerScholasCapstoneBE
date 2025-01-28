@@ -1,29 +1,31 @@
 import express from "express";
+import { createRestaurant } from "../controllers/restaurantsController.mjs";
 import Restaurant from "../models/restaurant.mjs";
-import User from "../models/User.mjs";
+// import User from "../models/User.mjs";
 
 const router = express.Router();
 
 // Create
 // Create restaurant
-router.post("/:id", async (req, res) => {
-  try {
-    const userId = req.params.id;
+// router.post("/:id", async (req, res) => {
+//   try {
+//     const userId = req.params.id;
 
-    const { name, visitDate, rating } = req.body;
-    if (!name || !visitDate || !rating) {
-      return res.status(400).json("Please fill in all required fields");
-    }
+//     const { name, visitDate, rating } = req.body;
+//     if (!name || !visitDate || !rating) {
+//       return res.status(400).json("Please fill in all required fields");
+//     }
 
-    req.body.userId = userId;
+//     req.body.userId = userId;
 
-    const newRestaurant = await Restaurant.create(req.body);
+//     const newRestaurant = await Restaurant.create(req.body);
 
-    res.status(201).json(newRestaurant);
-  } catch (error) {
-    res.status(500).json("Server Error");
-  }
-});
+//     res.status(201).json(newRestaurant);
+//   } catch (error) {
+//     res.status(500).json("Server Error");
+//   }
+// });
+router.route("/:id").post(createRestaurant);
 
 // Read
 // Get user restaurants
