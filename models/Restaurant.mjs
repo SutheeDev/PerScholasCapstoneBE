@@ -8,7 +8,7 @@ const restaurantSchema = new mongoose.Schema(
       trim: true,
       required: true,
     },
-    cusine: {
+    cuisine: {
       type: String,
     },
     visitDate: {

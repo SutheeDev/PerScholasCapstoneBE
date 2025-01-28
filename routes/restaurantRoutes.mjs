@@ -58,6 +58,29 @@ router.get("/:userId/:restaurantId", async (req, res) => {
 });
 
 // Update
+router.patch("/:userId/:restaurantId", async (req, res) => {
+  try {
+    const { userId, restaurantId } = req.params;
+    const { name, visitDate, rating } = req.body;
+
+    if (!name || !visitDate || !rating) {
+      return res.status(400).json("Please fill in all required fields");
+    }
+
+    const updatedRestaurant = await Restaurant.findOneAndUpdate(
+      {
+        _id: restaurantId,
+        userId,
+      },
+      req.body,
+      { new: true }
+    );
+
+    res.status(200).json(updatedRestaurant);
+  } catch (error) {
+    res.status(500).json("Server Error");
+  }
+});
 
 // Delete
 
