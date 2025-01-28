@@ -19,4 +19,18 @@ const createRestaurant = async (req, res) => {
   }
 };
 
-export { createRestaurant };
+const getRestaurants = async (req, res) => {
+  try {
+    const restaurants = await Restaurant.find({ userId: req.params.userId });
+
+    if (!restaurants || restaurants.length === 0) {
+      return res.status(400).json("You don't have any restaurant yet");
+    }
+
+    res.status(200).json(restaurants);
+  } catch (error) {
+    res.status(500).json("Server Error");
+  }
+};
+
+export { createRestaurant, getRestaurants };
