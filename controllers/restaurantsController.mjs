@@ -33,4 +33,19 @@ const getRestaurants = async (req, res) => {
   }
 };
 
-export { createRestaurant, getRestaurants };
+const getSingleRestaurant = async (req, res) => {
+  try {
+    const { userId, restaurantId } = req.params;
+    const restaurant = await Restaurant.findOne({ _id: restaurantId, userId });
+
+    if (!restaurant) {
+      return res.status(404).json("Restaurant not found");
+    }
+
+    res.status(200).json(restaurant);
+  } catch (error) {
+    res.status(500).json("Server Error");
+  }
+};
+
+export { createRestaurant, getRestaurants, getSingleRestaurant };

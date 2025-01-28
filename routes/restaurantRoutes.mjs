@@ -2,6 +2,7 @@ import express from "express";
 import {
   createRestaurant,
   getRestaurants,
+  getSingleRestaurant,
 } from "../controllers/restaurantsController.mjs";
 import Restaurant from "../models/restaurant.mjs";
 // import User from "../models/User.mjs";
@@ -48,20 +49,21 @@ router.route("/:id").post(createRestaurant);
 router.route("/:userId").get(getRestaurants);
 
 // Get single restaurant
-router.get("/:userId/:restaurantId", async (req, res) => {
-  try {
-    const { userId, restaurantId } = req.params;
-    const restaurant = await Restaurant.findOne({ _id: restaurantId, userId });
+// router.get("/:userId/:restaurantId", async (req, res) => {
+//   try {
+//     const { userId, restaurantId } = req.params;
+//     const restaurant = await Restaurant.findOne({ _id: restaurantId, userId });
 
-    if (!restaurant) {
-      return res.status(404).json("Restaurant not found");
-    }
+//     if (!restaurant) {
+//       return res.status(404).json("Restaurant not found");
+//     }
 
-    res.status(200).json(restaurant);
-  } catch (error) {
-    res.status(500).json("Server Error");
-  }
-});
+//     res.status(200).json(restaurant);
+//   } catch (error) {
+//     res.status(500).json("Server Error");
+//   }
+// });
+router.route("/:userId/:restaurantId").get(getSingleRestaurant);
 
 // Update
 router.patch("/:userId/:restaurantId", async (req, res) => {
