@@ -3,6 +3,7 @@ import {
   createRestaurant,
   getRestaurants,
   getSingleRestaurant,
+  updateRestaurant,
 } from "../controllers/restaurantsController.mjs";
 import Restaurant from "../models/restaurant.mjs";
 // import User from "../models/User.mjs";
@@ -66,29 +67,30 @@ router.route("/:userId").get(getRestaurants);
 router.route("/:userId/:restaurantId").get(getSingleRestaurant);
 
 // Update
-router.patch("/:userId/:restaurantId", async (req, res) => {
-  try {
-    const { userId, restaurantId } = req.params;
-    const { name, visitDate, rating } = req.body;
+// router.patch("/:userId/:restaurantId", async (req, res) => {
+//   try {
+//     const { userId, restaurantId } = req.params;
+//     const { name, visitDate, rating } = req.body;
 
-    if (!name || !visitDate || !rating) {
-      return res.status(400).json("Please fill in all required fields");
-    }
+//     if (!name || !visitDate || !rating) {
+//       return res.status(400).json("Please fill in all required fields");
+//     }
 
-    const updatedRestaurant = await Restaurant.findOneAndUpdate(
-      {
-        _id: restaurantId,
-        userId,
-      },
-      req.body,
-      { new: true }
-    );
+//     const updatedRestaurant = await Restaurant.findOneAndUpdate(
+//       {
+//         _id: restaurantId,
+//         userId,
+//       },
+//       req.body,
+//       { new: true }
+//     );
 
-    res.status(200).json(updatedRestaurant);
-  } catch (error) {
-    res.status(500).json("Server Error");
-  }
-});
+//     res.status(200).json(updatedRestaurant);
+//   } catch (error) {
+//     res.status(500).json("Server Error");
+//   }
+// });
+router.route("/:userId/:restaurantId").patch(updateRestaurant);
 
 // Delete
 router.delete("/:userId/:restaurantId", async (req, res) => {
