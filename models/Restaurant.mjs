@@ -30,6 +30,8 @@ const restaurantSchema = new mongoose.Schema(
     },
     image: {
       type: String,
+      default:
+        "https://res.cloudinary.com/dnc7potxo/image/upload/v1738184597/DineDiary/placeholder-image.png",
     },
     createdAt: {
       type: Date,
