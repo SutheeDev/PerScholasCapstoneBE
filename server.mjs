@@ -1,5 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
+import cors from "cors";
 import connectDB from "./config/db.mjs";
 import User from "./models/User.mjs";
 import Restaurant from "./models/restaurant.mjs";
@@ -16,6 +17,7 @@ import userRouter from "./routes/userRoutes.mjs";
 import restaurantRouter from "./routes/restaurantRoutes.mjs";
 
 app.use(express.json());
+app.use(cors());
 
 app.use("/api/user", userRouter);
 app.use("/api/restaurants", restaurantRouter);
