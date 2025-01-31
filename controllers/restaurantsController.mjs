@@ -2,7 +2,9 @@ import Restaurant from "../models/restaurant.mjs";
 
 const createRestaurant = async (req, res) => {
   try {
-    const userId = req.params.id;
+    console.log(req.body);
+    console.log(req.params.userId);
+    const userId = req.params.userId;
 
     const { name, visitDate, rating } = req.body;
     if (!name || !visitDate || !rating) {
