@@ -1,7 +1,4 @@
-# Per Scholas Capstone Project
-
-![The Dineary]()
-<br><br>
+# Per Scholas Capstone Project (Back End)
 
 Welcome to Per Scholas Capstone Project, where I created , [The Dineary](https://perscholascapstonefe.onrender.com/), a restaurant and dining experience journal application where users can log, manage, and organize their dining experience.
 
