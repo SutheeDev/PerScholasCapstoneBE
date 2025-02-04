@@ -1,4 +1,4 @@
-import Restaurant from "../models/restaurant.mjs";
+import Restaurant from "../models/Restaurant.mjs";
 
 const createRestaurant = async (req, res) => {
   try {

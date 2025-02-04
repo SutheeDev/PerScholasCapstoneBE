@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import connectDB from "./config/db.mjs";
 import User from "./models/User.mjs";
-import Restaurant from "./models/restaurant.mjs";
+import Restaurant from "./models/Restaurant.mjs";
 import users from "./config/seedUser.mjs";
 import restaurants from "./config/seedRestaurant.mjs";
 
