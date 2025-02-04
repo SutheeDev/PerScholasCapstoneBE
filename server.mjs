@@ -17,7 +17,7 @@ import userRouter from "./routes/userRoutes.mjs";
 import restaurantRouter from "./routes/restaurantRoutes.mjs";
 
 app.use(express.json());
-app.use(cors({ origin: "http://localhost:5173" }));
+app.use(cors({ origin: "https://perscholascapstonefe.onrender.com/" }));
 
 app.use("/api/user", userRouter);
 app.use("/api/restaurants", restaurantRouter);
