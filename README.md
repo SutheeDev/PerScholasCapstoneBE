@@ -43,7 +43,7 @@ MONGO_URI=your-mongodb-connection-string
 
 <br>
 
-## Running the Server <a name="running></a>
+## Running the Server <a name="running"></a>
 
 ```sh
 npm start
@@ -53,7 +53,7 @@ _Note: This project uses Nodemon for hot reloading._
 
 <br>
 
-## API Routes & Usage <a name='api'></a>
+## API Routes & Usage <a name="api"></a>
 
 ### 1. User Routes
 
@@ -135,7 +135,7 @@ This project is still in progress. Future updates will include:
 ## Acknowledgments <a name="acknowledgments"></a>
 
 - Seed files were created to populate user and restaurant data.
-- Restaurant images are sourced from [Unsplash](https://unsplash.com/).
+- Special thanks to [Unsplash](https://unsplash.com/) for food and restaurant images used in this project.
 - For Front End repository, follow this [Link](https://github.com/SutheeDev/PerScholasCapstoneFE)
 
 <br>
