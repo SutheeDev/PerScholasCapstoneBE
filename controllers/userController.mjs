@@ -13,9 +13,9 @@ const getUser = async (req, res) => {
 const updateUser = async (req, res) => {
   try {
     const userId = req.params.id;
-    const { name, email, password } = req.body;
+    const { name, email } = req.body;
 
-    if (!name || !email || !password) {
+    if (!name || !email) {
       return res.status(400).json("Please fill in all required fields");
     }
 
@@ -24,7 +24,7 @@ const updateUser = async (req, res) => {
     });
 
     if (!updatedUser) {
-      return res.status(400).json("No updatedUserrrr!");
+      return res.status(400).json("No updatedUser!");
     }
 
     res.status(200).json(updatedUser);
