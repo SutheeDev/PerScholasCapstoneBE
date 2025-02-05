@@ -21,7 +21,11 @@ const createRestaurant = async (req, res) => {
 
 const getRestaurants = async (req, res) => {
   try {
-    const restaurants = await Restaurant.find({ userId: req.params.userId });
+    const restaurants = await Restaurant.find({
+      userId: req.params.userId,
+    }).sort({ visitDate: -1 });
+
+    console.log(restaurants);
 
     if (!restaurants || restaurants.length === 0) {
       return res.status(400).json("You don't have any restaurant yet");
