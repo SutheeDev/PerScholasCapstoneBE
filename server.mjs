@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
+import morgan from "morgan";
 import connectDB from "./config/db.mjs";
 import User from "./models/User.mjs";
 import Restaurant from "./models/Restaurant.mjs";
@@ -15,6 +16,10 @@ const port = process.env.PORT || 5000;
 // Routes
 import userRouter from "./routes/userRoutes.mjs";
 import restaurantRouter from "./routes/restaurantRoutes.mjs";
+
+if (process.env.NODE_ENV === "development") {
+  app.use(morgan("dev"));
+}
 
 app.use(express.json());
 app.use(cors());
