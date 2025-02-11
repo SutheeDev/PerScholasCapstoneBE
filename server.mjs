@@ -47,9 +47,14 @@ app.get("/api/seed/restaurants", async (req, res) => {
   }
 });
 
-// Handle 404
-app.get("*", (req, res) => {
-  res.status(404).send("Invalid Route : 404");
+// Not Found Middleware
+app.use("*", (req, res) => {
+  res.status(404).json({ msg: "Not Found" });
+});
+
+// Error Middleware
+app.use((err, req, res, next) => {
+  res.status(500).json({ msg: "Something went wrong" });
 });
 
 const start = async () => {
