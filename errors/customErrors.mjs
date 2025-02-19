@@ -29,3 +29,11 @@ export class ForbiddenError extends Error {
     this.statusCode = 403;
   }
 }
+
+export class ServerError extends Error {
+  constructor(message) {
+    super(message);
+    this.name = "ServerError";
+    this.statusCode = 500;
+  }
+}

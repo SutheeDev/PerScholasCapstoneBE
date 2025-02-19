@@ -1,4 +1,9 @@
 import Restaurant from "../models/Restaurant.mjs";
+import {
+  NotFoundError,
+  BadRequestError,
+  ServerError,
+} from "../errors/customErrors.mjs";
 
 const createRestaurant = async (req, res) => {
   try {
@@ -6,7 +11,7 @@ const createRestaurant = async (req, res) => {
 
     const { name, visitDate, rating } = req.body;
     if (!name || !visitDate || !rating) {
-      return res.status(400).json("Please fill in all required fields");
+      throw new BadRequestError("Please fill in all required fields");
     }
 
     req.body.userId = userId;
@@ -15,7 +20,7 @@ const createRestaurant = async (req, res) => {
 
     res.status(201).json(newRestaurant);
   } catch (error) {
-    res.status(500).json("Server Error");
+    throw new ServerError("Something went wrong, please try again later");
   }
 };
 
@@ -26,12 +31,12 @@ const getRestaurants = async (req, res) => {
     }).sort({ visitDate: -1 });
 
     if (!restaurants || restaurants.length === 0) {
-      return res.status(400).json("You don't have any restaurant yet");
+      throw new BadRequestError("You don't have any restaurant yet");
     }
 
     res.status(200).json(restaurants);
   } catch (error) {
-    res.status(500).json("Server Error");
+    throw new ServerError("Something went wrong, please try again later");
   }
 };
 
@@ -41,12 +46,12 @@ const getSingleRestaurant = async (req, res) => {
     const restaurant = await Restaurant.findOne({ _id: restaurantId, userId });
 
     if (!restaurant) {
-      return res.status(404).json("Restaurant not found");
+      throw new NotFoundError("Restaurant not found");
     }
 
     res.status(200).json(restaurant);
   } catch (error) {
-    res.status(500).json("Server Error");
+    throw new ServerError("Something went wrong, please try again later");
   }
 };
 
@@ -56,7 +61,7 @@ const updateRestaurant = async (req, res) => {
     const { name, visitDate, rating } = req.body;
 
     if (!name || !visitDate || !rating) {
-      return res.status(400).json("Please fill in all required fields");
+      throw new BadRequestError("Please fill in all required fields");
     }
 
     const updatedRestaurant = await Restaurant.findOneAndUpdate(
@@ -70,7 +75,7 @@ const updateRestaurant = async (req, res) => {
 
     res.status(200).json(updatedRestaurant);
   } catch (error) {
-    res.status(500).json("Server Error");
+    throw new ServerError("Something went wrong, please try again later");
   }
 };
 
@@ -85,7 +90,7 @@ const deleteRestaurant = async (req, res) => {
 
     res.status(200).json(deletedRestaurant);
   } catch (error) {
-    res.status(500).json("Server Error");
+    throw new ServerError("Something went wrong, please try again later");
   }
 };
 
