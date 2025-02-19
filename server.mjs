@@ -7,6 +7,7 @@ import User from "./models/User.mjs";
 import Restaurant from "./models/Restaurant.mjs";
 import users from "./config/seedUser.mjs";
 import restaurants from "./config/seedRestaurant.mjs";
+import errorHandlerMiddleware from "./middleware/errorHandlerMiddleware.mjs";
 
 dotenv.config();
 const app = express();
@@ -53,9 +54,10 @@ app.use("*", (req, res) => {
 });
 
 // Error Middleware
-app.use((err, req, res, next) => {
-  res.status(500).json({ msg: "Something went wrong" });
-});
+app.use(errorHandlerMiddleware);
+// app.use((err, req, res, next) => {
+//   res.status(500).json({ msg: "Something went wrong" });
+// });
 
 const start = async () => {
   try {
